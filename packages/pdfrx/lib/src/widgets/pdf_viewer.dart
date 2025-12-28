@@ -2923,6 +2923,17 @@ class _PdfViewerState extends State<PdfViewer>
           },
           label: 'Underline',
         ),
+      if (params.isTextSelectionEnabled &&
+          params.textSelectionDelegate.hasSelectedText &&
+          widget.params.textSelectionParams?.onStrikethrough != null)
+        ContextMenuButtonItem(
+          onPressed: () async {
+            final ranges = await params.textSelectionDelegate.getSelectedTextRanges();
+            widget.params.textSelectionParams?.onStrikethrough?.call(ranges);
+            params.textSelectionDelegate.clearTextSelection();
+          },
+          label: 'Strikethrough',
+        ),
       if (params.isTextSelectionEnabled && !params.textSelectionDelegate.isSelectingAllText)
         ContextMenuButtonItem(
           onPressed: () => params.textSelectionDelegate.selectAllText(),

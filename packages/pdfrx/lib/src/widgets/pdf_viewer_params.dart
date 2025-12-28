@@ -743,6 +743,7 @@ class PdfTextSelectionParams {
     this.onTextSelectionChange,
     this.onHighlight,
     this.onUnderline,
+    this.onStrikethrough,
     this.onSelectionHandlePanStart,
     this.onSelectionHandlePanUpdate,
     this.onSelectionHandlePanEnd,
@@ -785,6 +786,9 @@ class PdfTextSelectionParams {
 
   /// Callback for when user taps underline action.
   final PdfViewerUnderlineCallback? onUnderline;
+
+  /// Callback for when user taps strikethrough action.
+  final PdfViewerStrikethroughCallback? onStrikethrough;
 
   /// Callback for when a selection handle pan starts.
   final PdfViewerSelectionHandlePanStartCallback? onSelectionHandlePanStart;
@@ -980,6 +984,11 @@ typedef PdfViewerHighlightCallback = void Function(List<PdfPageTextRange> textRa
 ///
 /// [textRanges] contains the selected text ranges to be underlined.
 typedef PdfViewerUnderlineCallback = void Function(List<PdfPageTextRange> textRanges);
+
+/// Callback for when user taps strikethrough action.
+///
+/// [textRanges] contains the selected text ranges to be strikethrough.
+typedef PdfViewerStrikethroughCallback = void Function(List<PdfPageTextRange> textRanges);
 
 /// Callback for when a selection handle pan starts
 typedef PdfViewerSelectionHandlePanStartCallback = void Function(PdfTextSelectionAnchor anchor);
