@@ -2912,6 +2912,17 @@ class _PdfViewerState extends State<PdfViewer>
           },
           label: 'Highlight',
         ),
+      if (params.isTextSelectionEnabled &&
+          params.textSelectionDelegate.hasSelectedText &&
+          widget.params.textSelectionParams?.onUnderline != null)
+        ContextMenuButtonItem(
+          onPressed: () async {
+            final ranges = await params.textSelectionDelegate.getSelectedTextRanges();
+            widget.params.textSelectionParams?.onUnderline?.call(ranges);
+            params.textSelectionDelegate.clearTextSelection();
+          },
+          label: 'Underline',
+        ),
       if (params.isTextSelectionEnabled && !params.textSelectionDelegate.isSelectingAllText)
         ContextMenuButtonItem(
           onPressed: () => params.textSelectionDelegate.selectAllText(),

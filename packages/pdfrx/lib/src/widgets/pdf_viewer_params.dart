@@ -742,6 +742,7 @@ class PdfTextSelectionParams {
     this.calcSelectionHandleOffset,
     this.onTextSelectionChange,
     this.onHighlight,
+    this.onUnderline,
     this.onSelectionHandlePanStart,
     this.onSelectionHandlePanUpdate,
     this.onSelectionHandlePanEnd,
@@ -781,6 +782,9 @@ class PdfTextSelectionParams {
 
   /// Callback for when user taps highlight action.
   final PdfViewerHighlightCallback? onHighlight;
+
+  /// Callback for when user taps underline action.
+  final PdfViewerUnderlineCallback? onUnderline;
 
   /// Callback for when a selection handle pan starts.
   final PdfViewerSelectionHandlePanStartCallback? onSelectionHandlePanStart;
@@ -971,6 +975,11 @@ typedef PdfViewerTextSelectionChangeCallback = void Function(PdfTextSelection te
 ///
 /// [textRanges] contains the selected text ranges to be highlighted.
 typedef PdfViewerHighlightCallback = void Function(List<PdfPageTextRange> textRanges);
+
+/// Callback for when user taps underline action.
+///
+/// [textRanges] contains the selected text ranges to be underlined.
+typedef PdfViewerUnderlineCallback = void Function(List<PdfPageTextRange> textRanges);
 
 /// Callback for when a selection handle pan starts
 typedef PdfViewerSelectionHandlePanStartCallback = void Function(PdfTextSelectionAnchor anchor);
