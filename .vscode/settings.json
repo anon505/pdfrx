@@ -225,6 +225,7 @@
     "YMDHMS",
     "ZapfDingbats"
   ],
+  "dart.flutterSdkPath": ".fvm/versions/3.38.5",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.organizeImports": "always"
@@ -307,14 +308,14 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.rulers": [
-        120
+      120
     ]
   },
   "[swift]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "vknabel.vscode-swiftformat",
     "editor.rulers": [
-        120
+      120
     ]
   },
   "swiftformat.enable": true,

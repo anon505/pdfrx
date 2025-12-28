@@ -2901,6 +2901,17 @@ class _PdfViewerState extends State<PdfViewer>
           onPressed: () => params.textSelectionDelegate.copyTextSelection(),
           type: ContextMenuButtonType.copy,
         ),
+      if (params.isTextSelectionEnabled &&
+          params.textSelectionDelegate.hasSelectedText &&
+          widget.params.textSelectionParams?.onHighlight != null)
+        ContextMenuButtonItem(
+          onPressed: () async {
+            final ranges = await params.textSelectionDelegate.getSelectedTextRanges();
+            widget.params.textSelectionParams?.onHighlight?.call(ranges);
+            params.textSelectionDelegate.clearTextSelection();
+          },
+          label: 'Highlight',
+        ),
       if (params.isTextSelectionEnabled && !params.textSelectionDelegate.isSelectingAllText)
         ContextMenuButtonItem(
           onPressed: () => params.textSelectionDelegate.selectAllText(),
@@ -3648,6 +3659,8 @@ class PdfViewerController extends ValueListenable<Matrix4> {
   _PdfViewerState? __state;
   final _listeners = <VoidCallback>[];
 
+  /// Clear current text selection if exists.
+  void clearTextSelection() => _state._clearTextSelections();
   void _attach(_PdfViewerState? state) {
     __state?._txController.removeListener(_notifyListeners);
     __state = state;

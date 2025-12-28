@@ -741,6 +741,7 @@ class PdfTextSelectionParams {
     this.buildSelectionHandle,
     this.calcSelectionHandleOffset,
     this.onTextSelectionChange,
+    this.onHighlight,
     this.onSelectionHandlePanStart,
     this.onSelectionHandlePanUpdate,
     this.onSelectionHandlePanEnd,
@@ -777,6 +778,9 @@ class PdfTextSelectionParams {
 
   /// Function to be notified when the text selection is changed.
   final PdfViewerTextSelectionChangeCallback? onTextSelectionChange;
+
+  /// Callback for when user taps highlight action.
+  final PdfViewerHighlightCallback? onHighlight;
 
   /// Callback for when a selection handle pan starts.
   final PdfViewerSelectionHandlePanStartCallback? onSelectionHandlePanStart;
@@ -962,6 +966,11 @@ typedef PdfViewerCalcSelectionAnchorHandleOffsetFunction =
 ///
 /// [textSelection] contains the selected text range on each page.
 typedef PdfViewerTextSelectionChangeCallback = void Function(PdfTextSelection textSelection);
+
+/// Callback for when user taps highlight action.
+///
+/// [textRanges] contains the selected text ranges to be highlighted.
+typedef PdfViewerHighlightCallback = void Function(List<PdfPageTextRange> textRanges);
 
 /// Callback for when a selection handle pan starts
 typedef PdfViewerSelectionHandlePanStartCallback = void Function(PdfTextSelectionAnchor anchor);
